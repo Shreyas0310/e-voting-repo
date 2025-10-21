@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAIT E-Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="maroon-bg text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                    <span class="maroon-text font-bold">RAIT</span>
+                </div>
+                <span class="text-xl font-bold">Ramrao Adik Institute of Technology</span>
+            </div>
+            <div class="space-x-4">
+                <a href="login.html" class="bg-white maroon-text px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Login</a>
+                <a href="results.html" class="bg-white maroon-text px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">View Results</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative maroon-bg text-white py-16 overflow-hidden">
+        <div class="particles" id="particles"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">RAIT Student Committee Elections</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Cast your vote for your preferred candidates in a secure and transparent digital election system</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="login.html" class="bg-white maroon-text px-6 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition pulse">Vote Now</a>
+                <a href="results.html" class="border-2 border-white text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-white hover:maroon-text transition">View Live Results</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center maroon-text mb-12">Election Information</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+                    <div class="w-12 h-12 maroon-bg rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-alt text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 maroon-text">Election Dates</h3>
+                    <p class="text-gray-600">Enrollment: Oct 10 - Oct 20, 2023</p>
+                    <p class="text-gray-600">Voting Day: Oct 25, 2023</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+                    <div class="w-12 h-12 maroon-bg rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 maroon-text">Committees</h3>
+                    <p class="text-gray-600">Sports Committee</p>
+                    <p class="text-gray-600">Student Union Council</p>
+                    <p class="text-gray-600">Social Wing</p>
+                    <p class="text-gray-600">ACM Student Chapter</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+                    <div class="w-12 h-12 maroon-bg rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-user-tie text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 maroon-text">Positions</h3>
+                    <p class="text-gray-600">President</p>
+                    <p class="text-gray-600">General Secretary</p>
+                    <p class="text-gray-600">PRO</p>
+                    <p class="text-gray-600">Publicity Head</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover">
+                    <div class="w-12 h-12 maroon-bg rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 maroon-text">Security</h3>
+                    <p class="text-gray-600">Secure Authentication</p>
+                    <p class="text-gray-600">One Vote Per Student</p>
+                    <p class="text-gray-600">Tamper-Proof Audit Logs</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                <h3 class="text-2xl font-bold mb-4 maroon-text">Election Rules</h3>
+                <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                    <li>Only students with roll numbers between 23IT1001 to 23IT1020 are eligible to vote</li>
+                    <li>Each student can vote for one candidate per role</li>
+                    <li>Only the first 100 validated voters can participate</li>
+                    <li>Each role has a maximum of 5 candidate slots</li>
+                    <li>Voting is only allowed on the designated voting day</li>
+                    <li>Results will be published immediately after voting closes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center maroon-text mb-12">Live Election Statistics</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold maroon-text mb-2" id="totalVoters">0</div>
+                    <p class="text-gray-600">Registered Voters</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold maroon-text mb-2" id="totalCandidates">0</div>
+                    <p class="text-gray-600">Candidates</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold maroon-text mb-2" id="votesCast">0</div>
+                    <p class="text-gray-600">Votes Cast</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold maroon-text mb-2" id="timeRemaining">0h 0m</div>
+                    <p class="text-gray-600">Until Voting Closes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="maroon-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <span class="maroon-text font-bold text-sm">RAIT</span>
+                        </div>
+                        <span class="text-lg font-bold">Ramrao Adik Institute of Technology</span>
+                    </div>
+                    <p class="mt-2 text-gray-300">Secure Digital Voting System</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-300">© 2023 RAIT E-Voting System. All rights reserved.</p>
+                    <p class="text-gray-300 mt-1">For technical support, contact: it-support@rait.ac.in</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - RAIT E-Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Layout -->
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="admin-sidebar w-64 text-white shadow-lg">
+            <div class="p-6">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <span class="maroon-text font-bold">RAIT</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Admin Panel</h1>
+                        <p class="text-gray-300 text-sm">E-Voting System</p>
+                    </div>
+                </div>
+
+                <nav class="space-y-2">
+                    <a href="#" onclick="showSection('dashboard')" class="admin-nav-item active">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" onclick="showSection('candidates')" class="admin-nav-item">
+                        <i class="fas fa-users mr-3"></i>
+                        Manage Candidates
+                    </a>
+                    <a href="#" onclick="showSection('voters')" class="admin-nav-item">
+                        <i class="fas fa-user-check mr-3"></i>
+                        Voter Management
+                    </a>
+                    <a href="#" onclick="showSection('results')" class="admin-nav-item">
+                        <i class="fas fa-chart-bar mr-3"></i>
+                        Election Results
+                    </a>
+                    <a href="#" onclick="showSection('settings')" class="admin-nav-item">
+                        <i class="fas fa-cog mr-3"></i>
+                        System Settings
+                    </a>
+                </nav>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-red-800">
+                <div class="text-center">
+                    <a href="index.html" class="block w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-600 transition mb-2">
+                        <i class="fas fa-home mr-2"></i>Back to Home
+                    </a>
+                    <button onclick="logout()" class="block w-full bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Bar -->
+            <header class="bg-white shadow-sm border-b px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <h2 id="sectionTitle" class="text-2xl font-bold maroon-text">Admin Dashboard</h2>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="font-medium" id="adminTime">Loading...</p>
+                            <p class="text-sm text-gray-600">Last updated: <span id="lastUpdateTime">Just now</span></p>
+                        </div>
+                        <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center text-white font-bold">
+                            A
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Dashboard Section -->
+                <div id="dashboardSection" class="admin-section">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600">Total Voters</p>
+                                    <h3 class="text-3xl font-bold maroon-text mt-2" id="adminTotalVoters">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600">Votes Cast</p>
+                                    <h3 class="text-3xl font-bold maroon-text mt-2" id="adminVotesCast">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-vote-yea text-green-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600">Candidates</p>
+                                    <h3 class="text-3xl font-bold maroon-text mt-2" id="adminCandidates">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-tie text-purple-600"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-600">Voter Turnout</p>
+                                    <h3 class="text-3xl font-bold maroon-text mt-2" id="adminTurnout">0%</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-percentage text-yellow-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-bold maroon-text mb-4">Quick Actions</h3>
+                            <div class="space-y-3">
+                                <button onclick="showSection('candidates')" class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <i class="fas fa-user-plus mr-2 text-green-600"></i>
+                                    Add New Candidate
+                                </button>
+                                <button onclick="exportData('all')" class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <i class="fas fa-download mr-2 text-blue-600"></i>
+                                    Export All Data
+                                </button>
+                                <button onclick="resetElection()" class="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <i class="fas fa-redo mr-2 text-red-600"></i>
+                                    Reset Election Data
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-bold maroon-text mb-4">System Status</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center p-2">
+                                    <span>Voting Status</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Active</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2">
+                                    <span>Database</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Connected</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2">
+                                    <span>Security</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Enabled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold maroon-text mb-4">Recent Activity</h3>
+                        <div id="recentActivity" class="space-y-3">
+                            <!-- Activity will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Candidates Section -->
+                <div id="candidatesSection" class="admin-section hidden">
+                    <!-- Candidate management content will be here -->
+                </div>
+
+                <!-- Voter Management Section -->
+                <div id="votersSection" class="admin-section hidden">
+                    <!-- Voter management content will be here -->
+                </div>
+
+                <!-- Election Results Section -->
+                <div id="resultsSection" class="admin-section hidden">
+                    <!-- Results content will be here -->
+                </div>
+
+                <!-- System Settings Section -->
+                <div id="settingsSection" class="admin-section hidden">
+                    <!-- Settings content will be here -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

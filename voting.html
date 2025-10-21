@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting - RAIT E-Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="maroon-bg text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                    <span class="maroon-text font-bold">RAIT</span>
+                </div>
+                <span class="text-xl font-bold">Voting Portal</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span id="userInfo" class="text-white"></span>
+                <a href="results.html" class="bg-white maroon-text px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">View Results</a>
+                <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Voting Section -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold maroon-text mb-2">Committee Elections 2023</h1>
+            <p class="text-gray-600">Cast your vote for each position. You can only vote once per position.</p>
+            <div class="mt-4 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                <strong>Important:</strong> You cannot change your vote after submission.
+            </div>
+        </div>
+
+        <!-- Voting Progress -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold maroon-text mb-4">Voting Progress</h2>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium">Sports Committee</span>
+                        <span class="text-sm" id="sportsProgress">0/4</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="sportsBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium">Student Union Council</span>
+                        <span class="text-sm" id="sucProgress">0/4</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="sucBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium">Social Wing</span>
+                        <span class="text-sm" id="socialProgress">0/4</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="socialBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium">ACM Student Chapter</span>
+                        <span class="text-sm" id="acmProgress">0/4</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="acmBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voting Forms -->
+        <div id="votingForms" class="space-y-8">
+            <!-- Forms will be dynamically generated here -->
+        </div>
+
+        <!-- Submit Votes Button -->
+        <div class="text-center mt-12">
+            <button id="submitVotes" class="bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed">
+                <i class="fas fa-paper-plane mr-2"></i>Submit All Votes
+            </button>
+            <p class="text-gray-600 mt-2">You can review your choices before submitting</p>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Confirm Your Votes</h3>
+                <p class="text-gray-600 mb-6">Are you sure you want to submit your votes? This action cannot be undone.</p>
+                
+                <div id="voteSummary" class="bg-gray-50 p-4 rounded-lg mb-6 text-left max-h-60 overflow-y-auto">
+                    <!-- Vote summary will be populated here -->
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button onclick="hideConfirmationModal()" class="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-400 transition">Review</button>
+                    <button onclick="submitVotes()" class="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition">Confirm & Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="voting.js"></script>
+</body>
+</html>

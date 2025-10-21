@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results - RAIT E-Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="maroon-bg text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                    <span class="maroon-text font-bold">RAIT</span>
+                </div>
+                <span class="text-xl font-bold">Election Results</span>
+            </div>
+            <div class="space-x-4">
+                <a href="index.html" class="bg-white maroon-text px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Home</a>
+                <a href="login.html" class="bg-white maroon-text px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Vote</a>
+                <a href="admin.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-yellow-600 transition">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Results Header -->
+    <div class="maroon-bg text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Election Results 2023</h1>
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <i class="fas fa-users mr-2"></i>
+                    <span id="totalVotersCount">0</span> Registered Voters
+                </div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <i class="fas fa-vote-yea mr-2"></i>
+                    <span id="votesCastCount">0</span> Votes Cast
+                </div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <i class="fas fa-percentage mr-2"></i>
+                    <span id="voterTurnout">0%</span> Voter Turnout
+                </div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span id="resultsTime">Updating...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Results -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="text-3xl font-bold maroon-text mb-2" id="totalCandidatesCount">0</div>
+                <p class="text-gray-600">Total Candidates</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="text-3xl font-bold maroon-text mb-2" id="positionsCount">16</div>
+                <p class="text-gray-600">Positions</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                <div class="text-3xl font-bold maroon-text mb-2" id="committeesCount">4</div>
+                <p class="text-gray-600">Committees</p>
+            </div>
+        </div>
+
+        <!-- Results by Committee -->
+        <div id="resultsContainer" class="space-y-8">
+            <!-- Results will be dynamically generated here -->
+        </div>
+
+        <!-- Export Section -->
+        <div class="mt-12 bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-2xl font-bold maroon-text mb-4">Export Results</h2>
+            <div class="flex flex-wrap gap-4">
+                <button onclick="exportResults('csv')" class="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition">
+                    <i class="fas fa-file-csv mr-2"></i>Export as CSV
+                </button>
+                <button onclick="exportResults('json')" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">
+                    <i class="fas fa-file-code mr-2"></i>Export as JSON
+                </button>
+                <button onclick="printResults()" class="bg-gray-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition">
+                    <i class="fas fa-print mr-2"></i>Print Results
+                </button>
+            </div>
+        </div>
+
+        <!-- Live Updates Notice -->
+        <div class="mt-6 bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded flex items-center">
+            <i class="fas fa-sync-alt mr-3 text-blue-500 animate-spin"></i>
+            <div>
+                <strong>Live Updates:</strong> Results are updating in real-time as votes are cast.
+                Last updated: <span id="lastUpdated">Just now</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Winner Celebration Modal -->
+    <div id="winnerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center">
+            <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-trophy text-yellow-600 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Election Completed!</h3>
+            <p class="text-gray-600 mb-6">All positions have been filled. Congratulations to the winners!</p>
+            <button onclick="hideWinnerModal()" class="bg-maroon text-white px-6 py-2 rounded-lg font-medium hover:bg-maroon transition">
+                View Results
+            </button>
+        </div>
+    </div>
+
+    <script src="results.js"></script>
+</body>
+</html>

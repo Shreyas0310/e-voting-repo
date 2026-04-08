@@ -5,7 +5,7 @@
 
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/Shreyas0310/e-voting-repo.git'
+                git branch: 'master', url: 'https://github.com/Shreyas0310/e-voting-repo.git'
             }
         }
 
